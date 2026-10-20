@@ -354,6 +354,9 @@ describe('StockBot real streamUI dispatcher with scripted inference', () => {
       aiState: { get: () => ({ messages: [] }), done: () => {} }
     })
     for (const url of [
+      'not a URL',
+      '',
+      'https://',
       'javascript:alert(1)',
       'file:///etc/passwd',
       'https://user:password@example.com'

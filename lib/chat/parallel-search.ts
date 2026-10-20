@@ -11,12 +11,16 @@ export const webUrl = z
   .string()
   .url()
   .refine(value => {
-    const url = new URL(value)
-    return (
-      ['http:', 'https:'].includes(url.protocol) &&
-      !url.username &&
-      !url.password
-    )
+    try {
+      const url = new URL(value)
+      return (
+        ['http:', 'https:'].includes(url.protocol) &&
+        !url.username &&
+        !url.password
+      )
+    } catch {
+      return false
+    }
   }, 'Use an HTTP or HTTPS URL without credentials.')
 
 const responseSchema = z.object({
